@@ -1,7 +1,7 @@
 elem' a [] = False
 elem' a (x:xs)
   | a == x = True
-  | otherwise = elem a xs
+  | otherwise = a `elem` xs
 
 main :: IO ()
 main = undefined
