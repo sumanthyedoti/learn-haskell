@@ -13,5 +13,15 @@ ex2 = map (fmap (* 2)) [Just 2, Just 4, Just 7, Just 9]
 
 ex3 = fmap ("Hello " ++) getLine
 
+-- Implement Functor to Maybe like type 'Option'
+data Option a
+  = Some a
+  | None
+  deriving (Show)
+
+instance Functor Option where
+  fmap f (Some a) = Some $ f a
+  fmap f None = None
+
 main :: IO ()
 main = undefined
