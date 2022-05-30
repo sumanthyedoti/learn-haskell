@@ -1,3 +1,6 @@
+import Data.Char
+import Data.List
+
 {-|
  - Functor is any type either pure or impure which is mappable
  - Functor helps to apply pure functions to impure values
@@ -22,6 +25,22 @@ data Option a
 instance Functor Option where
   fmap f (Some a) = Some $ f a
   fmap f None = None
+
+{-
+- IO is an instance of Functor
+- Instead of
+      do line <- getLine
+         let line' = reverse line
+- can do
+-}
+functorIO = do
+  line <- fmap reverse getLine
+  putStrLn $ "You said " ++ line ++ " backwards!"
+
+-- multiple transformations to data inside a functor
+multiTransformations = do
+  line <- fmap (intersperse '-' . reverse . map toUpper) getLine
+  putStrLn line
 
 main :: IO ()
 main = undefined
